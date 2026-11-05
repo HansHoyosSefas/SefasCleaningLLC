@@ -160,7 +160,7 @@
   /* ---------- Contact form mailto fallback ----------
      NOTE: Remove this listener when switching to Formspree (or another
      real form backend). See the comment in index.html above the form.
-  ------------------------------------------------------ 
+  ------------------------------------------------------ */
   const form = document.getElementById("quoteForm");
   const status = document.getElementById("formStatus");
 
@@ -175,7 +175,7 @@
       // Basic native validation
       if (!form.checkValidity()) {
         form.reportValidity();
-        return;*/
+        return;
       }
 
       const data = new FormData(form);
@@ -194,7 +194,7 @@
         "Message:\n" + message + "\n";
 
       const mailto =
-        "mailto:Hans.hoyos@sefascleaningllc.com" +
+        "mailto:info@sefascleaningllc.com" +
         "?subject=" + encodeURIComponent(subject) +
         "&body=" + encodeURIComponent(body);
 
