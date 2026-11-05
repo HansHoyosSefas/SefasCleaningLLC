@@ -194,7 +194,7 @@
         "Message:\n" + message + "\n";
 
       const mailto =
-        "mailto:info@sefascleaning.com" +
+        "mailto:Hans.hoyos@sefascleaningllc.com" +
         "?subject=" + encodeURIComponent(subject) +
         "&body=" + encodeURIComponent(body);
 
