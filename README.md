@@ -71,4 +71,4 @@ The form currently uses a `mailto:` fallback. To submit form entries to a hosted
 
 ## License
 
-© 2026 Sefas Cleaning, LLC. All rights reserved.
+© 2027 Sefas Cleaning, LLC. All rights reserved.
