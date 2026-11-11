@@ -167,7 +167,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .logo:hover { color: var(--color-slate-deep); }
 
 .logo-img {
-  height: 120px;
+  height: 240px;
   width: auto;
   display: block;
   transition: height var(--transition);
@@ -178,12 +178,12 @@ ul { margin: 0; padding: 0; list-style: none; }
 .site-header.scrolled .logo-img { height: 72px; }
 
 @media (max-width: 900px) {
-  .logo-img { height: 100px; }
+  .logo-img { height: 200px; }
   .site-header.scrolled .logo-img { height: 64px; }
 }
 
 @media (max-width: 480px) {
-  .logo-img { height: 72px; }
+  .logo-img { height: 144px; }
   .site-header.scrolled .logo-img { height: 54px; }
 }
 
