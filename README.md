@@ -1,111 +1,74 @@
 # Sefas Cleaning, LLC
 
-A simple, professional, mobile-friendly static website for **Sefas Cleaning, LLC** — a family-owned cleaning company serving Pender County, New Hanover County, Brunswick County, and Wilmington, NC for over 26 years.
+A simple, professional, mobile-friendly static website for **Sefas Cleaning, LLC**, a family-owned cleaning company serving Pender County, New Hanover County, Brunswick County, and Wilmington, NC.
 
 > **26 Years of Trust, Cleanliness, and Care.**
 
----
+The production site is available at <https://www.sefascleaningllc.com/>.
 
-## Tech
+## Technology
 
-- HTML5, CSS3, vanilla JavaScript
-- No frameworks, no build step
-- Google Fonts (Playfair Display + Inter)
-- Coastal Wilmington, NC color palette tuned to the brand logo
-- Mobile-first responsive design
-- Schema.org `LocalBusiness` JSON-LD on the home page
-- Hosted on **GitHub Pages**
+- HTML5, CSS3, and vanilla JavaScript
+- No frameworks, package manager, or build step
+- Responsive layout with Google Fonts (Playfair Display and Inter)
+- Schema.org `LocalBusiness` structured data on the home page
+- Static hosting on Azure Static Web Apps
 
-## Site map
+## Site features
 
-```
-/
-├── index.html    → Home (Hero + About + Services accordion)
-└── contact.html  → Contact + free-quote form
-```
-
-The **home page is a single-page experience**. Home / About / Services are anchor links that scroll within the page; only **Contact** is a separate page (the action moment). As you scroll, the navbar highlights the active section.
-
-The Services section uses an **accordion**: click any service to expand its description and photo. Opening one service automatically collapses the previously open one.
+- `index.html` contains the Home, About, and Services sections.
+- Navigation links scroll to sections on the home page; Contact opens `contact.html`.
+- Services are shown in an accordion, with only one service expanded at a time.
+- The contact form uses a `mailto:` fallback and does not require a server-side backend.
 
 ## Project structure
 
-```
-Sefas_Cleaning/
-├── index.html          ← main page
-├── contact.html        ← contact + free-quote form
-├── styles.css          ← coastal theme + responsive layout
-├── script.js           ← nav, scroll-spy, accordion, mailto fallback
-├── CLAUDE.md           ← project rules for AI-assisted editing
+```text
+.
+├── index.html
+├── contact.html
+├── styles.css
+├── script.js
+├── README.md
+├── CLAUDE.md
 ├── assets/
-│   ├── sefas-logo.png
-│   ├── coastal-home.jpg
-│   ├── team-roberto.jpg
-│   ├── work-residential-vacuum.jpg
-│   ├── work-deck-halfclean.jpg
-│   ├── service-deep.png
-│   ├── service-move-in-out.png
-│   ├── service-post-construction.png
-│   ├── service-commercial.png
-│   ├── service-window.png
-│   ├── service-gutter.png
-│   ├── service-driveway.png
-│   ├── service-yard.png
-│   └── service-painting.png
-├── .gitignore
-└── README.md
+│   ├── README.md
+│   └── site images
+└── .github/
+    └── workflows/
+        └── azure-static-web-apps-green-mud-064e6ae0f.yml
 ```
+
+`styles.css` contains site-wide styles, and `script.js` handles navigation, scroll behavior, the services accordion, and the contact form fallback. All website images are stored in `assets/` and referenced with relative paths.
 
 ## Local preview
 
+From the repository root, start a local static file server:
+
 ```bash
-cd ~/Documents/GitHub/Sefas_Cleaning
 python3 -m http.server 8000
-# then visit http://localhost:8000
 ```
 
-Press `Ctrl + C` to stop the server. Hard-refresh (`Cmd + Shift + R`) after each change.
+Open <http://localhost:8000/> in a browser. Stop the server with `Ctrl+C`.
 
-## Editing content
+## Deployment
 
-- **Home page (hero, about, owners card, services accordion)**: `index.html`
-- **Service copy + bullet lists**: the `<article class="accordion-item">` blocks inside `index.html`
-- **Contact info & form**: `contact.html`
-- **Visual changes (colors, spacing, fonts)**: CSS variables at the top of `styles.css`
+The GitHub Actions workflow at `.github/workflows/azure-static-web-apps-green-mud-064e6ae0f.yml` deploys the site to Azure Static Web Apps:
 
-### Brand color system (in `:root` of `styles.css`)
+- Pushes to `main` start a deployment. The workflow can also be started manually from the **Actions** tab.
+- The site is served from the repository root (`app_location: /`).
+- The site is plain HTML, CSS, and JavaScript, so the workflow skips the app build.
+- The Azure deployment token is read from the GitHub Actions secret `AZURE_STATIC_WEB_APPS_API_TOKEN_GREEN_MUD_064E6AE0F`. Keep its value in GitHub Secrets; do not commit it to the repository.
 
-| Variable                | Value     | Use                                |
-|-------------------------|-----------|------------------------------------|
-| `--color-primary`       | `#4a90c8` | Sefas wordmark blue                |
-| `--color-primary-light` | `#a8d0e8` | Carolina sky blue                  |
-| `--color-primary-dark`  | `#2c5f8d` | Deep coastal / hover blue          |
-| `--color-slate`         | `#2d4a6a` | "Cleaning, LLC" navy text          |
-| `--color-slate-deep`    | `#1e3552` | Footer / deepest navy              |
-| `--color-sky`           | `#eaf4fb` | Soft section background            |
-| `--color-white`         | `#ffffff` | Page background                    |
-| `--color-muted`         | `#5e6a7a` | Secondary body text                |
+## Contact form backend
 
-## Contact form
+The form currently uses a `mailto:` fallback. To submit form entries to a hosted form service such as Formspree:
 
-The form on `contact.html` uses a `mailto:` fallback by default so it works on a static GitHub Pages site with no backend.
-
-To upgrade to a real form backend (e.g. **Formspree**):
-
-1. Create a free form at <https://formspree.io>.
-2. In `contact.html`, replace `action="mailto:info@sefascleaning.com"` with `action="https://formspree.io/f/YOUR_FORM_ID"`.
-3. Remove `enctype="text/plain"` from the `<form>` tag.
-4. In `script.js`, remove the `quoteForm` submit listener.
-
-## Deployment (GitHub Pages)
-
-1. Push the latest changes to `main`.
-2. On github.com, go to **Settings → Pages**.
-3. Set **Source** to **Deploy from a branch**, **Branch** = `main`, folder = `/ (root)`.
-4. Save. Within 1–2 minutes the site is live at `https://<your-username>.github.io/Sefas_Cleaning/`.
-
-Every future push to `main` redeploys automatically.
+1. Create a form and get its endpoint.
+2. Replace the form's `mailto:` action in `contact.html` with the service endpoint.
+3. Remove `enctype="text/plain"` from the form.
+4. Update the `quoteForm` submit handler in `script.js` so it allows the form to submit to that endpoint.
 
 ## License
 
-© 2026 Sefas Cleaning, LLC. All Rights Reserved.
+© 2026 Sefas Cleaning, LLC. All rights reserved.
