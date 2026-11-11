@@ -1123,10 +1123,9 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 .accordion-content img {
   width: 100%;
+  height: auto;
   border-radius: var(--radius-sm);
   display: block;
-  aspect-ratio: 16 / 10;
-  object-fit: cover;
   border: 1px solid var(--color-border);
   background: var(--color-sky-soft);
 }
