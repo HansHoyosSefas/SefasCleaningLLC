@@ -363,8 +363,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .hero-media img {
   display: block;
   width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
+  height: auto;
 }
 
 @media (min-width: 900px) {
